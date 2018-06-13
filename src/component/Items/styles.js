@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {colors} from "../../styles/colors";
+import {fonts} from "../../styles/fonts";
 
 const styles = StyleSheet.create({
   container: {flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff'},
@@ -37,10 +38,10 @@ const styles = StyleSheet.create({
   },
   
   textOfNameOfInsurance: {
-    fontSize: 18,
+    fontSize: fonts.big_gib,
     marginTop: 3,
     textAlign: 'center',
-    color: '#9aaca5',
+    color: colors.dark,
     backgroundColor: 'transparent',
     fontFamily: 'arial',
     fontWeight: '600',
@@ -65,9 +66,9 @@ const styles = StyleSheet.create({
     width: 12,
     height: 12,
     borderRadius: 6,
-    borderColor: '#005c5b',
+    borderColor: colors.primary,
     borderWidth: 1,
-    backgroundColor: '#005c5b',
+    backgroundColor: colors.primary,
     marginRight: 7,
   },
   
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     fontWeight: '300',
     // fontFamily: 'arial',
-    color: '#005c5b',
+    color: colors.dark,
     fontSize: 16,
   },
   

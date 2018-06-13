@@ -20,34 +20,11 @@ module.exports = StyleSheet.create({
   },
   loginCotainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    
   },
-  input: {
-    color: colors.white,
-    padding: 10,
-    height: 50,
-    borderColor: colors.buttons,
-    borderWidth: 1,
-    borderRadius: 25,
-    alignSelf: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-    marginBottom: 8,
-    width: (dimensions.default - metrics.padding),
-  },
-  
-  picker: {
-    padding: 10,
-    height: 50,
-    borderColor: colors.buttons,
-    borderWidth: 1,
-    borderRadius: 25,
-    alignSelf: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-    marginBottom: 8,
-    width: (dimensions.default - metrics.padding),
-  },
-  
+
   
   button: {
     justifyContent: 'center',
@@ -75,6 +52,8 @@ module.exports = StyleSheet.create({
   logo: {
     marginTop: 70,
     marginBottom: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   
   logoImage: {

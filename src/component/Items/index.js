@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 
-import {View, Text, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, TouchableOpacity, Alert, Linking } from 'react-native';
 import styles from './styles';
 import Button from '../../template/buttons';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -70,9 +70,7 @@ class Items extends Component {
         <TouchableOpacity
           style={styles.button}
           underlayColor="#328fe6"
-          onPress={() => {
-            return false;
-          }}>
+          onPress={() => Linking.openURL('http://google.com') }>
           <Button type="outline" >
             Visualizar
             <Icon name="ios-checkmark-circle" size={16}/>
@@ -83,6 +81,16 @@ class Items extends Component {
     </View>
   );
   
+  // __renderLinking = () => {
+  //   Linking.canOpenURL('http://google.com').then(supported => {
+  //     if (!supported) {
+  //       console.log('Can\'t handle url: ' + url);
+  //     } else {
+  //       return ;
+  //     }
+  //   }).catch(err => console.error('An error occurred', err));
+  //
+  // }
   render() {
     
     return (
