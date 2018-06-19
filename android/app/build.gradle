@@ -95,7 +95,7 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.aprovacao"
@@ -106,6 +106,8 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        manifestPlaceholders = [onesignal_app_id: "2f1eab2a-f178-4d37-ab42-a3d89d97f560",
+                                onesignal_google_project_number: "REMOTE"]
     }
     splits {
         abi {
@@ -137,6 +139,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-push-notification')
     compile project(':react-native-onesignal')
     compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])

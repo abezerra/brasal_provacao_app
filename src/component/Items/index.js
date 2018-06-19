@@ -9,16 +9,21 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 class Items extends Component {
   
+  constructor(props) {
+    super(props)
+    console.log('as props do jsdkfnjsdmfsd', props)
+  }
+  
   __renderItem = () => (
     <View style={styles.cardBoxOfInsurance}>
       
       <View style={styles.nameAndIconOfInsurance}>
         <Text style={styles.textOfNameOfInsurance}>
-          Pedido Nº 00007
+          Pedido Nº { this.props.pendencia.pdc_in_codigo }
         </Text>
         
         <Text style={styles.textOfNameOfInsurance}>
-          301005 - Tecnologia da informação
+          { this.props.pendencia.cus_st_descricao }
         </Text>
       </View>
       
@@ -27,14 +32,14 @@ class Items extends Component {
         <View style={styles.textAndYourBall}>
           <View style={styles.circle_green}/>
           <Text style={styles.assetsAndInsurerInformations}>
-            Fornecedor: Apple Inc
+            Fornecedor: { this.props.pendencia.agn_st_fantasia }
           </Text>
         </View>
         
         <View style={styles.textAndYourBall}>
           <View style={styles.circle_green}/>
           <Text style={styles.assetsAndInsurerInformations}>
-            Emissão: 10/10/1910
+            Emissão: { this.props.pendencia.pdc_dt_emissao }
           </Text>
         </View>
       </View>
@@ -42,25 +47,25 @@ class Items extends Component {
       <View style={styles.details}>
         <View style={styles.textLeft}>
           <Text style={styles.textLeftContent}>
-            Descrição: iphone x red
+            Descrição: { this.props.pendencia.pro_st_descricao }
           </Text>
           
           <Text style={styles.textLeftContent}>
-            Quantidade: 1
+            Quantidade: { this.props.pendencia.itp_re_qtdeaconverter }
           </Text>
           
           <Text style={styles.textLeftContent}>
-            Unidade: UN
+            Unidade: { this.props.pendencia.uni_st_produto }
           </Text>
   
           <Text style={styles.textLeftContent}>
-            Valor Un.: 2.800,00
+            Valor Un.: R$ { this.props.pendencia.itp_re_vlunitario }
           </Text>
         </View>
         
         <View style={styles.textRigth}>
           <Text style={styles.textRigthContent}>
-            Total: R$ 2.800,00
+            Total: R$ { this.props.pendencia.pdc_re_totalpedido }
           </Text>
         </View>
       

@@ -1,164 +1,113 @@
 'use strict';
 
-import moment from 'moment';
-import React from 'react';
-import { StackNavigator } from 'react-navigation';
-import { Text, Button, View, StatusBar, Image } from 'react-native';
-import { GiftedForm, GiftedFormManager } from 'react-native-gifted-form';
-import { Actions } from 'react-native-router-flux';
+import React, {Component} from 'react';
+import {
+  Alert,
+  View,
+  Text,
+  TextInput,
+  Button,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+  TouchableHighlight,
+  StatusBar,
+  AsyncStorage,
+} from 'react-native';
+import axios from 'axios';
+import {Actions} from 'react-native-router-flux';
+import Toast, {DURATION} from 'react-native-easy-toast';
 import styles from './styles';
+
 const logo = require('../../../../assets/img/logo/logo.png')
+const bg = require('../../../../assets/img/bg/login/login.jpg');
+import {api} from '../../../../env';
 
-class MyModal extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: navigation.getParam('getTitle')(),
-      headerLeft: (
-        <Button
-          onPress={() => {
-            navigation.getParam('onClose')(null, navigation);
-          }}
-          title='Voltar'
-        />
-      ),
-      headerRight: (
-        <Button
-          onPress={() => {
-            navigation.getParam('onClose')(null, navigation);
-          }}
-          title='Confirmar'
-        />
-      )
-    };
-  };
-  
-  render() {
-    return this.props.navigation.getParam('renderScene')();
-  }
-}
-
-class Login extends React.Component {
-  
-  static navigationOptions = {
-    // title: 'logao',
-    headerStyle: {
-      backgroundColor: '#e40f00',
-      borderBottomColor: 'transparent',
-    },
-    headerTintColor: '#000',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  };
+export default class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { lastSubmitValues: '' };
+    this.state = {email: '', password: ''};
+    this.auth = this.auth.bind(this);
+    this.__renderToaster = this.__renderToaster.bind(this);
   }
+  
+  __renderToaster = () => (
+    <View style={styles.toasterContainer}>
+      <Text style={styles.toasterText}>Usuario ou senha invalida</Text>
+    </View>
+  )
+  
+  async auth() {
+    await axios.post(`${api.apiUrl}/login`, {
+      user: this.state.email,
+      password: this.state.password,
+    }).then((res) => {
+      console.log('res data', res.data)
+        if (res.data >= 1) {
+          AsyncStorage.setItem('@MySuperStore:ID', this.state.email);
+          Actions.main();
+        }
+      })
+      .catch((err) => {
+        this.refs.toast.show('Usuario ou senha invalidos', 3200);
+      });
+  }
+  
   render() {
     return (
-  
-      <View style={styles.bg}>
+      <ImageBackground source={bg} style={styles.bg}>
         <StatusBar
           barStyle="light-content"
         />
         <View style={styles.loginCotainer}>
-      
+          
           <View style={styles.logo}>
-            <Image source={logo} style={styles.logoImage} />
+            <Image source={logo} style={styles.logoImage}/>
           </View>
-  
-          <GiftedForm
-            formName='signupForm' // GiftedForm instances that use the same name will also share the same states
-            openModal={route => {
-              this.props.navigation.push('MyModal', route); // The ModalWidget will be opened using this method. Tested with ExNavigator
-            }}
-            clearOnClose={false} // delete the values of the form when unmounted
-            defaults={{
-              username: 'Farid',
-              'gender{}': false,
-              password: 'abcdefg',
-              country: 'FR',
-            }}
-            style={styles.loginCotainer}>
-            <GiftedForm.SeparatorWidget />
-    
-            <GiftedForm.TextInputWidget
-              name='fullName' // mandatory
-              title='Usuario'
-              placeholder='username'
-              clearButtonMode='while-editing'
-              image={require('../../../../assets/img/icons/user.png')}
-             
-
-            />
-    
-            <GiftedForm.ModalWidget
-              title='Centro de custo'
-              displayValue='gender'
-              image={require('../../../../assets/img/icons/cc.png')}
-    
-            >
-              <GiftedForm.SeparatorWidget />
-      
-              <GiftedForm.SelectWidget
-                name='gender'
-                title='Centro de custo'
-                multiple={false}
-              >
-                <GiftedForm.OptionWidget
-                  title='30001 - TI'
-                  value='30001 - TI'
-                  image={require('../../../../assets/img/icons/ti.png')}
-                />
-                <GiftedForm.OptionWidget
-                  title='30002 - TO'
-                  value='30002 - TO'
-                  image={require('../../../../assets/img/icons/rocket.png')}
-                />
-                <GiftedForm.OptionWidget
-                  title='30003 - TU'
-                  value='30003 - TU'
-                  image={require('../../../../assets/img/icons/rocket.png')}
-                />
-              </GiftedForm.SelectWidget>
-            </GiftedForm.ModalWidget>
-    
-            <GiftedForm.ErrorsWidget />
-    
-            <GiftedForm.SubmitWidget
-              title='Entrar'
-              widgetStyles={{
-                submitButton: {
-                  backgroundColor: '#2185D0'
-                }
-              }}
-              onSubmit={
-                (
-                  isValid,
-                  values,
-                  validationResults,
-                  postSubmit = null,
-                  modalNavigator = null
-                ) => { Actions.main() }
-              }
-            />
-          </GiftedForm>
+          <Toast
+            ref="toast"
+            style={{backgroundColor: 'red'}}
+            position='top'
+            positionValue={200}
+            fadeOutDuration={2000}
+            textStyle={{color: '#fff'}}/>
+          
+          <Toast
+            ref="toastSuccess"
+            style={{backgroundColor: '#8ad57b'}}
+            position='top'
+            positionValue={200}
+            fadeOutDuration={2000}
+            textStyle={{color: '#000'}}/>
+          <TextInput
+            underlineColorAndroid="transparent"
+            style={styles.input}
+            value={this.state.email}
+            onChangeText={email => this.setState({email})}
+            placeholder="Usuario"
+            multiline={false}
+            placeholderTextColor="#fff"
+          />
+          
+          <TextInput
+            underlineColorAndroid="transparent"
+            style={styles.input}
+            value={this.state.password}
+            onChangeText={password => this.setState({password})}
+            placeholder="Senha"
+            secureTextEntry
+            maxLength={12}
+            multiline={false}
+            placeholderTextColor="#fff"
+          />
+          
+          <TouchableOpacity style={styles.button} underlayColor="#328fe6" onPress={this.auth}>
+            <Text style={styles.label}>ENTRAR</Text>
+          </TouchableOpacity>
+        
         </View>
-      </View>
-      
+        {/* </View> */}
+      </ImageBackground>
     );
   }
 }
-
-const RootNavigation = StackNavigator({
-  DemoScreen: {
-    screen: Login
-  },
-  MyModal: {
-    screen: MyModal
-  }
-});
-
-const root = () => <RootNavigation />;
-
-export default root;
