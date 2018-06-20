@@ -22,8 +22,8 @@ class Items extends Component {
           Pedido Nº { this.props.pendencia.pdc_in_codigo }
         </Text>
         
-        <Text style={styles.textOfNameOfInsurance}>
-          { this.props.pendencia.cus_st_descricao }
+        <Text style={styles.custCenter} >
+          { this.props.pendencia.cus_st_extenso } - { this.props.pendencia.cus_st_descricao }
         </Text>
       </View>
       
@@ -31,7 +31,7 @@ class Items extends Component {
         
         <View style={styles.textAndYourBall}>
           <View style={styles.circle_green}/>
-          <Text style={styles.assetsAndInsurerInformations}>
+          <Text style={styles.providerName} numberOfLines={1}>
             Fornecedor: { this.props.pendencia.agn_st_fantasia }
           </Text>
         </View>
@@ -77,8 +77,7 @@ class Items extends Component {
           underlayColor="#328fe6"
           onPress={() => Linking.openURL('http://google.com') }>
           <Button type="outline" >
-            Visualizar
-            <Icon name="ios-checkmark-circle" size={16}/>
+            Visualizar    <Icon name="ios-checkmark-circle" style={{marginRight: 5}} size={16}/>
           </Button>
         </TouchableOpacity>
       </View>
@@ -86,16 +85,6 @@ class Items extends Component {
     </View>
   );
   
-  // __renderLinking = () => {
-  //   Linking.canOpenURL('http://google.com').then(supported => {
-  //     if (!supported) {
-  //       console.log('Can\'t handle url: ' + url);
-  //     } else {
-  //       return ;
-  //     }
-  //   }).catch(err => console.error('An error occurred', err));
-  //
-  // }
   render() {
     
     return (

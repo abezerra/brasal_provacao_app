@@ -1,9 +1,17 @@
-import {StyleSheet} from 'react-native';
-import {colors} from "../../styles/colors";
-import {fonts} from "../../styles/fonts";
+import { StyleSheet, Dimensions } from 'react-native';
+import { colors } from "../../styles/colors";
+import { fonts } from "../../styles/fonts";
+import { metrics } from "../../styles/metrics";
 
+const width = Dimensions.get('window');
 const styles = StyleSheet.create({
-  container: {flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff'},
+  
+  container: {
+    flex: 1,
+    padding: 16,
+    paddingTop: 30,
+    backgroundColor: colors.white
+  },
   
   cardBoxOfInsurance: {
     backgroundColor: colors.white,
@@ -39,7 +47,7 @@ const styles = StyleSheet.create({
   
   textOfNameOfInsurance: {
     fontSize: fonts.big_gib,
-    marginTop: 3,
+    marginTop: 7,
     textAlign: 'center',
     color: colors.dark,
     backgroundColor: 'transparent',
@@ -47,10 +55,17 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   
+  custCenter: {
+    fontSize: fonts.small,
+    marginTop: 3,
+    textAlign: 'center',
+    color: colors.dark,
+    backgroundColor: 'transparent',
+    fontFamily: 'arial',
+    fontWeight: '400',
+  },
+  
   insurerMinimalInformations: {
-    // borderRadius: 30,
-    // borderWidth: 1,
-    // borderColor: '#00645D',
     marginTop: 5,
     marginBottom: 5,
     marginLeft: 10,
@@ -79,9 +94,19 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     // fontFamily: 'arial',
     color: colors.dark,
-    fontSize: 16,
+    fontSize: 14,
   },
   
+  providerName: {
+    marginTop: 1,
+    backgroundColor: 'transparent',
+    fontWeight: '300',
+    // fontFamily: 'arial',
+    color: colors.dark,
+    fontSize: 14,
+    flex: 1,
+    alignItems: 'flex-start',
+  },
   
   viewOfApoliceNumberAnDates: {
     backgroundColor: '#ccc',
@@ -89,7 +114,9 @@ const styles = StyleSheet.create({
   },
   
   textLeft: {
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+    marginLeft: 10,
+    marginRight: 10,
   },
   
   textRigth: {
@@ -97,15 +124,16 @@ const styles = StyleSheet.create({
   },
   
   textLeftContent: {
-    color: '#7b9088',
-    fontSize: 16,
+    color: colors.fonsts,
+    fontSize: 14,
     fontWeight: '400',
     margin: 3,
   },
   
   textRigthContent: {
-    color: '#005c5b',
-    fontSize: 16,
+    color: colors.dark,
+    fontSize: fonts.big,
+    fontWeight: '600',
     margin: 8,
   },
   

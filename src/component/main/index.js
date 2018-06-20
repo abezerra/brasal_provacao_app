@@ -71,7 +71,7 @@ export default class Main extends Component {
           {this.__renderSpindolas()}
         
         </ScrollView>
-        <Tabs />
+        
       </View>
     );
   }

@@ -19,8 +19,8 @@ import {Actions} from 'react-native-router-flux';
 import Toast, {DURATION} from 'react-native-easy-toast';
 import styles from './styles';
 
-const logo = require('../../../../assets/img/logo/logo.png')
-const bg = require('../../../../assets/img/bg/login/login.jpg');
+const logo = require('../../../../assets/img/logo/logo_brasal.png')
+const bg = require('../../../../assets/img/bg/login/splash.jpg');
 import {api} from '../../../../env';
 
 export default class Login extends Component {
