@@ -10,12 +10,12 @@ class Header extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
-          placeholder="Pesquisar"
-          placeholderTextColor="#fff"
-          style={styles.input}
-          multiline={false}/>
-        <Icon name="filter" size={24} style={styles.icons} />
+        {/*<TextInput*/}
+          {/*placeholder="Pesquisar"*/}
+          {/*placeholderTextColor="#fff"*/}
+          {/*style={styles.input}*/}
+          {/*multiline={false}/>*/}
+        {/*<Icon name="filter" size={24} style={styles.icons} />*/}
       
       </View>
     );

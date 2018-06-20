@@ -6,7 +6,7 @@
 
     <!--one signla-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/> <!-- Approximate location - If you want to use promptLocation for letting OneSignal know the user location. -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/> <!--  Precise location If you want to use promptLocation for letting OneSignal know the user location. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
       android:name=".MainApplication"
@@ -15,22 +15,21 @@
       android:allowBackup="false"
       android:theme="@style/AppTheme">
 
-        <activity
-                android:name=".MainActivity"
-                android:label="Brasal Aprovação"
-                android:launchMode="singleTop"> <!-- Add this attribute to your main activity -->
-        </activity>
+
 
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-        android:windowSoftInputMode="adjustResize">
+        android:windowSoftInputMode="adjustResize"
+        android:launchMode="singleTop">
+
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
 
