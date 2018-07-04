@@ -17,7 +17,7 @@ import axios from 'axios';
 export default class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = { name: 'Fulano de talco', emial: '', cpf: '', user_id: '', pendencias: ''};
+    this.state = { name: 'Fulano de talco', emial: '', cpf: '', user_id: '', pendencias: '', player_id: ''};
   }
   
   componentWillMount() {
@@ -26,7 +26,9 @@ export default class Main extends Component {
   
   async getToken() {
     const value = await AsyncStorage.getItem('@MySuperStore:ID');
-    console.log('Value do id do cabra logado', value)
+    
+    const player_id = await AsyncStorage.getItem('@MySuperStore:player_id');
+    this.setState({player_id: player_id})
     
     let data = {
       'user_id': value,
@@ -42,6 +44,7 @@ export default class Main extends Component {
         this.setState({pendencias: res.data.data})
         
         console.log('states da parada', this.state)
+        this.__updatePlayerid();
         
       })
       .catch(error => console.log('erro ao trazer dados do usuario logado', error));
@@ -59,6 +62,15 @@ export default class Main extends Component {
       return false;
   }
   
+  __updatePlayerid(){
+    let dt = {
+      player_id: this.state.player_id,
+      user_id: this.state.user_id
+    }
+    axios.put(`${api.apiUrl}/set_playerid`, dt)
+      .then( res => console.log('Dados atualizados com sucesso', res))
+      .catch(error => console.log('Erro ao atualizar os dados do player', error))
+  }
   
   
   render() {
